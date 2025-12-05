@@ -16,15 +16,13 @@
       --radius: 18px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%;
-      height: 100%;
+    html { scroll-behavior: smooth; }
+    body {
       font-family: "Poppins", sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
-
     /* HEADER */
     header {
       width: 100%;
@@ -69,7 +67,6 @@
       transition: .2s;
     }
     nav a:hover { color: var(--accent2); }
-
     .btn-primary {
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       padding: 12px 20px;
@@ -80,7 +77,27 @@
       color: #000;
       box-shadow: 0 0 12px rgba(255, 50, 50, 0.3);
       transition: .2s;
-      display: inline-block;
+      font-size: 1em;
+      margin-left: 12px;
+    }
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      margin-left: 18px;
+    }
+    .hamburger span {
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: var(--accent2);
+      border-radius: 2px;
+      transition: 0.3s;
     }
 
     /* HERO */
@@ -90,15 +107,16 @@
       justify-content: space-between;
       padding: 70px 10vw;
       gap: 30px;
+      min-height: 60vh;
     }
     .hero h2 {
       font-family: "Orbitron";
-      font-size: 46px;
+      font-size: 2.6em;
       color: var(--accent);
       margin-bottom: 10px;
+      line-height: 1.1;
     }
-    .hero p { color: var(--muted); max-width: 480px; margin-bottom: 18px; }
-
+    .hero p { color: var(--muted); max-width: 480px; margin-bottom: 18px; font-size: 1.1em;}
     .hero-img {
       width: 420px;
       height: 420px;
@@ -109,39 +127,40 @@
       justify-content: center;
       border: 3px solid var(--accent2);
       box-shadow: 0 0 40px rgba(255, 95, 0, 0.4);
-      font-size: 2rem;
       font-family: "Orbitron";
-      color: var(--accent2);
-      text-shadow: 0 2px 10px #000;
+      font-size: 2.6em;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-align: center;
       font-weight: bold;
-      letter-spacing: 1px;
+      user-select: none;
     }
-
     /* SECTIONS */
     section {
       max-width: 1200px;
       margin: auto;
       padding: 50px 20px;
     }
-    h3 { font-size: 28px; margin-bottom: 22px; font-family:"Orbitron" }
-
+    h3 { font-size: 1.7em; margin-bottom: 22px; font-family:"Orbitron" }
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 22px;
     }
-
     .card {
       background: var(--card);
       padding: 22px;
       border-radius: var(--radius);
       border: 1px solid rgba(255, 255, 255, 0.05);
       transition: .2s;
+      font-size: 1.11em;
       text-align: center;
-      font-size: 1.1rem;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .card:hover { transform: translateY(-6px); border-color: var(--accent2); }
-
     footer {
       padding: 20px;
       text-align: center;
@@ -149,80 +168,92 @@
       background: #000;
       border-top: 1px solid #111;
     }
-
-    /* MOBILE NAV MENU */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--accent2);
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 200;
-    }
-    .mobile-nav {
-      display: none;
-    }
-
-    /* RESPONSIVE */
-    @media(max-width: 850px){
-      .hero { flex-direction: column; text-align: center; padding: 44px 6vw; }
-      .hero-img { width: 220px; height: 220px; font-size: 1.45rem; margin-bottom: 20px;}
-      .nav { flex-direction: row; padding: 10px 12px;}
-      nav ul { gap: 18px; }
-      .grid-3 { grid-template-columns: 1fr 1fr;}
-    }
-
-    @media(max-width:640px){
-      section { padding: 34px 6px; }
-      .hero { padding: 34px 6px; gap: 16px;}
-      .hero h2 { font-size: 32px; }
-      .hero-img{width:140px;height:140px;font-size:1.2rem;}
-      .grid-3 { grid-template-columns: 1fr; gap:16px;}
-      h3 { font-size: 23px;}
-      .card{padding:14px;font-size:1rem;}
-      .btn-primary{padding:10px 15px;}
-      .nav { padding: 10px 5px;}
-    }
-
-    @media(max-width:500px){
-      nav ul { display: none; }
-      .nav-toggle { display: block;}
-      .mobile-nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 54px;
-        left: 0;
-        right: 0;
-        background: rgba(18,18,18, 0.98);
-        border-bottom: 1px solid var(--accent);
-        z-index: 500;
-        box-shadow:0 8px 40px rgba(255, 92, 46, 0.2);
-      }
-      .mobile-nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .mobile-nav ul li {
-        padding: 18px 12px;
-        border-bottom: 1px solid #222;
-      }
-      .mobile-nav ul li:last-child { border-bottom: none; }
-      .mobile-nav ul li a {
-        color: var(--accent2);
-        font-size: 1.1rem;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-      }
-      body.mobile-menu-open { overflow: hidden;}
-    }
-
-    /* .muted class shorthand */
     .muted { color: var(--muted); }
+    /* GALLERY */
+    #gallery img {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+      display: block;
+    }
 
+    /* RESPONSIVE STYLES */
+    @media (max-width: 1020px) {
+      .nav { padding: 10px 8px; }
+      .hero { padding: 54px 4vw; }
+      section { padding-left: 8px; padding-right: 8px; }
+    }
+    @media (max-width: 850px){
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 34px;
+      }
+      .hero-img {
+        width: 300px;
+        height: 300px;
+        font-size: 2.1em;
+      }
+      .nav { flex-wrap: wrap; }
+    }
+    @media (max-width: 650px) {
+      .nav { flex-direction: row; padding: 10px 4px; }
+      .brand img { height: 44px; }
+      .brand h1 { font-size: 1.03em; }
+      .hero h2 { font-size: 2em; }
+      .hero-img { width: 170px; height: 170px; font-size: 1em;}
+      .card { font-size: 0.96em;}
+    }
+    @media (max-width: 550px) {
+      .nav {
+        flex-direction: row;
+        padding: 10px 2vw;
+        align-items: flex-start;
+        min-height: 60px;
+      }
+      .brand { gap: 7px; }
+      nav ul {
+        flex-direction: column;
+        background: var(--bg);
+        border-radius: var(--radius);
+        position: absolute;
+        top: 60px;
+        right: 2vw;
+        min-width: 160px;
+        padding: 12px 6px;
+        gap: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+        display: none;
+        z-index: 888;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .btn-primary {
+        padding: 10px 16px;
+        font-size: 1em;
+        margin-left: 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .brand img { height: 38px; }
+      .hero {
+        padding: 38px 0 30px 0;
+      }
+      .hero-img { width: 104px; height: 104px; font-size: .78em;}
+      section { padding: 30px 4vw; }
+      h3 { font-size: 1.19em; }
+      #gallery { margin-left: 0; margin-right: 0; }
+      #gallery img { border-radius: 9px;}
+    }
+    @media (max-width: 362px){
+      .btn-primary, .card { font-size: 0.87em; }
+      .brand h1 { font-size: 0.95em; }
+      .card { min-height: 60px; }
+    }
   </style>
 </head>
 <body>
@@ -230,27 +261,28 @@
 <header>
   <div class="nav">
     <div class="brand">
-      <h1>Game Adda</h1>
+      <!-- User-provided logo (replace src with uploaded file if needed) -->
+      <img id="siteLogo" src="logo.png" alt="Game Adda Logo" style="height:56px;border-radius:10px;object-fit:contain;box-shadow:0 6px 18px rgba(255,41,41,0.12)" />
+      <div>
+        <h1>Game Adda</h1>
+        <div style="font-size:12px;color:var(--muted)">Free Fire Tournament App</div>
+      </div>
     </div>
     <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#download">Download</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul id="navLinks">
+        <li><a href="#home" onclick="closeNav()">Home</a></li>
+        <li><a href="#features" onclick="closeNav()">Features</a></li>
+        <li><a href="#download" onclick="closeNav()">Download</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
       </ul>
     </nav>
-    <button class="btn-primary" onclick="document.getElementById('downloadBtn').scrollIntoView({behavior:'smooth'})">Download APK</button>
-    <button class="nav-toggle" id="navToggle" aria-label="Open navigation">&#9776;</button>
+    <div style="display:flex;align-items:center">
+      <button class="btn-primary" onclick="document.getElementById('downloadBtn').scrollIntoView({behavior:'smooth'})">Download APK</button>
+      <div class="hamburger" id="hamburger" aria-label="Menu" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Navigation">
-    <ul>
-      <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
-      <li><a href="#features" onclick="closeMobileMenu()">Features</a></li>
-      <li><a href="#download" onclick="closeMobileMenu()">Download</a></li>
-      <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-    </ul>
-  </nav>
 </header>
 
 <section class="hero" id="home">
@@ -282,6 +314,16 @@
   <button class="btn-primary" id="apkDownload">Download Game Adda APK</button>
 </section>
 
+<!-- Screenshot Column -->
+<section id="gallery" style="max-width:720px;margin:40px auto;">
+  <h3 class="center">Screenshots</h3>
+  <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
+    <img src="https://picsum.photos/seed/game1/720/360" alt="Screenshot 1">
+    <img src="https://picsum.photos/seed/game2/720/360" alt="Screenshot 2">
+    <img src="https://picsum.photos/seed/game3/720/360" alt="Screenshot 3">
+  </div>
+</section>
+
 <section id="contact" style="text-align:center">
   <h3>Need Help?</h3>
   <p class="muted">Contact our support team anytime</p>
@@ -305,32 +347,21 @@
     URL.revokeObjectURL(link);
   });
 
-  // Mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const mobileNav = document.getElementById('mobileNav');
-  navToggle.addEventListener('click', function() {
-    if (mobileNav.style.display === "flex") {
-      mobileNav.style.display = "none";
-      document.body.classList.remove('mobile-menu-open');
-    } else {
-      mobileNav.style.display = "flex";
-      document.body.classList.add('mobile-menu-open');
-    }
-  });
-
-  function closeMobileMenu() {
-    mobileNav.style.display = "none";
-    document.body.classList.remove('mobile-menu-open');
+  // Responsive Mobile Nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  function toggleNav() {
+    navLinks.classList.toggle('active');
   }
-
-  // Close mobile nav when resizing up
-  window.addEventListener('resize', function() {
-    if(window.innerWidth > 500) {
-      mobileNav.style.display = "none";
-      document.body.classList.remove('mobile-menu-open');
-    }
+  function closeNav() {
+    if(window.innerWidth <= 550) navLinks.classList.remove('active');
+  }
+  hamburger.addEventListener('click', toggleNav);
+  hamburger.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ toggleNav(); }
   });
+  window.addEventListener('resize', closeNav);
+  // Close nav menu after clicking a link (handled by onclick in <a>)
 </script>
-
 </body>
 </html>
